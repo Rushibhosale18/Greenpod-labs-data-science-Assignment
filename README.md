@@ -109,7 +109,7 @@ streamlit run app.py
 ```
 Open **[http://localhost:8501](http://localhost:8501)** in your browser.
 
-### 🚀 1-Click Public Cloud Deployment (Streamlit Community Cloud):
+### 🚀 Option A: 1-Click Public Cloud Deployment (Streamlit Community Cloud)
 The repository is completely configured with `packages.txt` (headless Linux OpenGL libraries) and serialized model weights for direct 1-click hosting:
 1. Go to **[share.streamlit.io](https://share.streamlit.io)** and log in with GitHub.
 2. Click **"New app"**.
@@ -119,6 +119,30 @@ The repository is completely configured with `packages.txt` (headless Linux Open
    - **Main file path:** `app.py`
 4. Click **Deploy!**
 The application will build in ~2 minutes and provide a permanent public HTTPS URL (e.g., `https://rushibhosale18-greenpod-labs-avocado.streamlit.app`).
+
+### 🌐 Option B: Deploy on Render (Render.com)
+The repository includes native `render.yaml`, `Procfile`, `.python-version`, and `Dockerfile` for seamless deployment on Render:
+
+**Method 1: Render Blueprints (Automatic Infrastructure-as-Code):**
+1. Sign in to **[dashboard.render.com](https://dashboard.render.com)** with your GitHub account.
+2. Click **"New +"** -> **"Blueprint"**.
+3. Select `Rushibhosale18/Greenpod-labs-data-science-Assignment`.
+4. Render automatically reads `render.yaml` and provisions your web service.
+5. Click **"Apply"**.
+
+**Method 2: Manual Web Service Setup on Render:**
+1. Click **"New +"** -> **"Web Service"**.
+2. Select repository: `Rushibhosale18/Greenpod-labs-data-science-Assignment`.
+3. Configure the settings:
+   - **Name:** `greenpod-avocado-ripening`
+   - **Language:** `Python 3`
+   - **Branch:** `main`
+   - **Region:** `Oregon (US West)` or closest
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true`
+   - **Instance Type:** `Free`
+4. Click **"Create Web Service"**. Render will deploy your app at:
+   `https://greenpod-avocado-ripening.onrender.com`
 
 ---
 
