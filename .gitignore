@@ -20,11 +20,12 @@ ENV/
 *.zip
 *.tar.gz
 
-# Trained Model checkpoints (keep if lightweight or track via joblib/pth)
-*.pth
+# Trained Model checkpoints (unignore models/ directory weights for cloud deployment)
 *.pt
 *.h5
-*.joblib
+!models/svm_model.joblib
+!models/rf_model.joblib
+!models/mobilenet_v2_best.pth
 
 # IDE
 .vscode/

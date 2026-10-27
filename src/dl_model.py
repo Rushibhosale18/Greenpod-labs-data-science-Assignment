@@ -302,7 +302,11 @@ class DeepLearningRipeningPipeline:
     @classmethod
     def load(cls, filepath: str, device: Optional[torch.device] = None):
         """Loads model weights."""
-        checkpoint = torch.load(filepath, map_location=device if device else 'cpu')
+        try:
+            checkpoint = torch.load(filepath, map_location=device if device else 'cpu', weights_only=False)
+        except TypeError:
+            checkpoint = torch.load(filepath, map_location=device if device else 'cpu')
+
         instance = cls(
             architecture=checkpoint.get('architecture', 'mobilenet_v2'),
             num_classes=checkpoint.get('num_classes', 4),
