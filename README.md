@@ -2,6 +2,12 @@
 ### End-to-End Computer Vision Pipeline | Multi-Model Benchmarking | Edge Deployment Analysis
 **GreenPod Labs — Data Science & Computer Vision Assignment 2**
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717.svg?logo=github)](https://github.com/Rushibhosale18/Greenpod-labs-data-science-Assignment)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python)](https://www.python.org/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Interactive_App-FF4B4B.svg?logo=streamlit)](https://share.streamlit.io)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg?logo=pytorch)](https://pytorch.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E.svg?logo=scikitlearn)](https://scikit-learn.org/)
+
 ---
 
 ## 📌 1. Project Overview
@@ -25,7 +31,9 @@ avocado_ripening_classification/
 ├── requirements.txt              # Production and development dependencies
 ├── train_all_models.py           # Master benchmarking script for training both approaches
 ├── main_demo.py                  # Single-run inference script for automated demonstration
+├── app.py                        # Interactive Streamlit Web Application & Sorting Dashboard
 ├── generate_pdf_report.py        # PDF generation script producing executive report
+├── generate_docx_report.py       # DOCX report generation script
 ├── data/
 │   ├── raw/                      # Downloaded and categorized dataset (1,090 images)
 │   │   ├── underripe/            # 369 images
@@ -70,8 +78,8 @@ avocado_ripening_classification/
 ### Setup Environment
 ```bash
 # 1. Clone repository
-git clone https://github.com/<your-username>/avocado_ripening_classification.git
-cd avocado_ripening_classification
+git clone https://github.com/Rushibhosale18/Greenpod-labs-data-science-Assignment.git
+cd Greenpod-labs-data-science-Assignment
 
 # 2. Create virtual environment
 python -m venv venv
@@ -86,7 +94,35 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 4. Execution & Usage
+## 🌐 4. Interactive Web Application & Cloud Deployment
+
+The repository includes a production-ready interactive web application (`app.py`) built with Streamlit. It features:
+- Dual-model real-time inference (Classical SVM vs MobileNetV2)
+- Post-harvest shelf-life guidance and cold-chain sorting actions
+- Interactive EDA with class distributions, color space breakdowns, and lighting glare audits
+- Interactive model benchmarking matrices and confusion matrices
+- Built-in PDF and DOCX technical report downloaders
+
+### Run Locally:
+```bash
+streamlit run app.py
+```
+Open **[http://localhost:8501](http://localhost:8501)** in your browser.
+
+### 🚀 1-Click Public Cloud Deployment (Streamlit Community Cloud):
+The repository is completely configured with `packages.txt` (headless Linux OpenGL libraries) and serialized model weights for direct 1-click hosting:
+1. Go to **[share.streamlit.io](https://share.streamlit.io)** and log in with GitHub.
+2. Click **"New app"**.
+3. Fill in:
+   - **Repository:** `Rushibhosale18/Greenpod-labs-data-science-Assignment`
+   - **Branch:** `main`
+   - **Main file path:** `app.py`
+4. Click **Deploy!**
+The application will build in ~2 minutes and provide a permanent public HTTPS URL (e.g., `https://rushibhosale18-greenpod-labs-avocado.streamlit.app`).
+
+---
+
+## 🚀 5. Execution & Usage
 
 ### 4.1 Run Single-Image Inference Demo (`main_demo.py`)
 Demonstrate classification on an avocado image with side-by-side output from both Classical ML and Deep Learning:
