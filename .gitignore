@@ -1,0 +1,33 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Data and large files
+# data/raw/
+# data/processed/
+*.zip
+*.tar.gz
+
+# Trained Model checkpoints (keep if lightweight or track via joblib/pth)
+*.pth
+*.pt
+*.h5
+*.joblib
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,32 @@
+{
+    "total_images": 1090,
+    "train_count": 763,
+    "val_count": 163,
+    "test_count": 164,
+    "class_distribution": {
+        "overall": {
+            "underripe": 369,
+            "breaking": 314,
+            "overripe": 206,
+            "ripe": 201
+        },
+        "train": {
+            "underripe": 258,
+            "breaking": 220,
+            "overripe": 144,
+            "ripe": 141
+        },
+        "val": {
+            "underripe": 55,
+            "breaking": 47,
+            "overripe": 31,
+            "ripe": 30
+        },
+        "test": {
+            "underripe": 56,
+            "breaking": 47,
+            "overripe": 31,
+            "ripe": 30
+        }
+    }
+}

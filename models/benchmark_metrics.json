@@ -1,0 +1,29 @@
+{
+    "SVM (Classical)": {
+        "Accuracy": 0.9878048780487805,
+        "Macro Precision": 0.9836021505376344,
+        "Macro Recall": 0.9836021505376344,
+        "Macro F1-Score": 0.9836021505376344,
+        "Weighted F1-Score": 0.9878048780487805,
+        "Inference Latency (ms)": 0.05381572537305879,
+        "Training Time (s)": 0.11331939697265625
+    },
+    "Random Forest (Classical)": {
+        "Accuracy": 0.9817073170731707,
+        "Macro Precision": 0.9757543103448276,
+        "Macro Recall": 0.9752688172043011,
+        "Macro F1-Score": 0.9753833736884585,
+        "Weighted F1-Score": 0.9816974743597314,
+        "Inference Latency (ms)": 0.2655328773870701,
+        "Training Time (s)": 0.4807393550872803
+    },
+    "MobileNetV2 (Transfer Learning)": {
+        "Accuracy": 1.0,
+        "Macro Precision": 1.0,
+        "Macro Recall": 1.0,
+        "Macro F1-Score": 1.0,
+        "Weighted F1-Score": 1.0,
+        "Inference Latency (ms)": 55.340791620859285,
+        "Training Time (s)": 621.6101922988892
+    }
+}
