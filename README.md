@@ -4,9 +4,12 @@
 
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717.svg?logo=github)](https://github.com/Rushibhosale18/Greenpod-labs-data-science-Assignment)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python)](https://www.python.org/)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-Interactive_App-FF4B4B.svg?logo=streamlit)](https://share.streamlit.io)
+[![Live Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://greenpod-labs-data-science-assignment-kne5uyhn5pmxpxtj4bb5au.streamlit.app/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg?logo=pytorch)](https://pytorch.org/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E.svg?logo=scikitlearn)](https://scikit-learn.org/)
+
+> 🚀 **Live Production Demo:** Access the live interactive sorting and classification dashboard at:  
+> **[https://greenpod-labs-data-science-assignment-kne5uyhn5pmxpxtj4bb5au.streamlit.app/](https://greenpod-labs-data-science-assignment-kne5uyhn5pmxpxtj4bb5au.streamlit.app/)**
 
 ---
 
@@ -109,16 +112,11 @@ streamlit run app.py
 ```
 Open **[http://localhost:8501](http://localhost:8501)** in your browser.
 
-### 🚀 Option A: 1-Click Public Cloud Deployment (Streamlit Community Cloud)
-The repository is completely configured with `packages.txt` (headless Linux OpenGL libraries) and serialized model weights for direct 1-click hosting:
-1. Go to **[share.streamlit.io](https://share.streamlit.io)** and log in with GitHub.
-2. Click **"New app"**.
-3. Fill in:
-   - **Repository:** `Rushibhosale18/Greenpod-labs-data-science-Assignment`
-   - **Branch:** `main`
-   - **Main file path:** `app.py`
-4. Click **Deploy!**
-The application will build in ~2 minutes and provide a permanent public HTTPS URL (e.g., `https://rushibhosale18-greenpod-labs-avocado.streamlit.app`).
+### 🚀 Live Cloud Deployment (Streamlit Community Cloud)
+The application is deployed live with zero setup required:
+👉 **[https://greenpod-labs-data-science-assignment-kne5uyhn5pmxpxtj4bb5au.streamlit.app/](https://greenpod-labs-data-science-assignment-kne5uyhn5pmxpxtj4bb5au.streamlit.app/)**
+
+The repository is pre-configured with `packages.txt` (headless Linux OpenGL libraries), cached feature pipelines, and serialized model weights for automatic CI/CD deployment on every push.
 
 ### 🌐 Option B: Deploy on Render (Render.com)
 The repository includes native `render.yaml`, `Procfile`, `.python-version`, and `Dockerfile` for seamless deployment on Render:
