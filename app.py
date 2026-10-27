@@ -17,6 +17,9 @@ import torch
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Optimize PyTorch CPU threading for cloud containers (prevents CPU thread contention on Render)
+torch.set_num_threads(2)
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PROJECT_DIR)
 
@@ -122,6 +125,29 @@ except Exception as e:
     load_err = str(e)
 
 
+# High-performance in-memory cache for predictions (eliminates recomputation on re-renders)
+@st.cache_data(show_spinner=False)
+def get_preset_files_cached(stage_dir: str):
+    if os.path.exists(stage_dir):
+        return [f for f in os.listdir(stage_dir) if f.lower().endswith(('.jpg', '.png'))][:15]
+    return []
+
+
+@st.cache_data(show_spinner=False)
+def run_classical_inference_cached(image_path: str):
+    t0 = time.time()
+    c_feats = extract_single_image_features(image_path).reshape(1, -1)
+    pred_idx = int(classical_model.predict(c_feats)[0])
+    probs = classical_model.predict_proba(c_feats)[0].tolist()
+    latency = (time.time() - t0) * 1000
+    return pred_idx, probs, latency
+
+
+@st.cache_data(show_spinner=False)
+def run_dl_inference_cached(image_path: str):
+    return dl_model.predict_single_image(image_path)
+
+
 # Sidebar Navigation
 st.sidebar.image("https://img.icons8.com/color/96/avocado.png", width=64)
 st.sidebar.title("🥑 GreenPod Labs")
@@ -170,9 +196,9 @@ if nav_choice == "🔍 Live Inference Demo":
         if input_mode == "Select Preset Sample Image":
             preset_stage = st.selectbox("Ripening Stage:", CLASS_NAMES, format_func=lambda x: f"{x.upper()} - {STAGE_DESCRIPTIONS[x].split(':')[1].strip()}")
             stage_dir = os.path.join(raw_dir, preset_stage)
-            if os.path.exists(stage_dir):
-                available_files = [f for f in os.listdir(stage_dir) if f.lower().endswith(('.jpg', '.png'))]
-                selected_file = st.selectbox("Sample Image File:", available_files[:15])
+            available_files = get_preset_files_cached(stage_dir)
+            if available_files:
+                selected_file = st.selectbox("Sample Image File:", available_files)
                 selected_image_path = os.path.join(stage_dir, selected_file)
                 target_stage_name = preset_stage
         else:
@@ -190,17 +216,12 @@ if nav_choice == "🔍 Live Inference Demo":
     with col_pred:
         st.subheader("2. Dual-Model Classification Results")
         if selected_image_path and os.path.exists(selected_image_path):
-            # Run Approach 1
-            t0 = time.time()
-            c_feats = extract_single_image_features(selected_image_path).reshape(1, -1)
-            c_pred_idx = int(classical_model.predict(c_feats)[0])
-            c_probs = classical_model.predict_proba(c_feats)[0]
-            c_latency = (time.time() - t0) * 1000
+            # Run Approach 1 (Cached)
+            c_pred_idx, c_probs, c_latency = run_classical_inference_cached(selected_image_path)
             c_stage = CLASS_NAMES[c_pred_idx]
 
-            # Run Approach 2
-            t0 = time.time()
-            dl_res = dl_model.predict_single_image(selected_image_path)
+            # Run Approach 2 (Cached)
+            dl_res = run_dl_inference_cached(selected_image_path)
             dl_latency = dl_res['inference_time_ms']
             dl_stage = dl_res['predicted_class']
             dl_probs = dl_res['all_probabilities']
